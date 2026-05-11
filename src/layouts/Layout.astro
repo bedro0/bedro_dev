@@ -1,3 +1,8 @@
+---
+import "../styles/global.css";
+import NavBar from "../components/NavBar";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,9 +11,10 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Badri Isiani</title>
 	</head>
-	<body>
+	<body class="bg-green-950 text-green-50">
+		<NavBar />
 		<slot />
 	</body>
 </html>

@@ -1,11 +1,16 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar";
+import { Content as Bio } from "../components/Bio.md";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<div class="flex">
+		<div class="text-4xl sm:w-xl mx-32">
+			<Bio />
+		</div>
+	</div>
 </Layout>
