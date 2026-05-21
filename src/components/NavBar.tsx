@@ -1,3 +1,7 @@
+import githubLogo from "../assets/GitHub_Invertocat_White.svg"
+import linkedinLogo from "../assets/InBug-White.png"
+import twitchLogo from "../assets/glitch_flat_white.svg"
+
 export default function NavBar() {
     return (
         <nav className="text-green-100 my-8 mx-8 sm:text-3xl text-lg flex justify-between">
@@ -17,17 +21,17 @@ function Socials() {
         {
             platform: "GitHub",
             url: "https://github.com/bedro0",
-            logo: "GitHub_Invertocat_White.svg"
+            logo: githubLogo
         },
         {
             platform: "LinkedIn",
             url: "https://www.linkedin.com/in/bedro0/",
-            logo: "InBug-White.png"
+            logo: linkedinLogo
         },
         {
             platform: "Twitch",
             url: "https://www.twitch.tv/bedro_dev",
-            logo: "glitch_flat_white.svg"
+            logo: twitchLogo
         }
     ]
     return (
@@ -39,8 +43,8 @@ function Socials() {
                     href={url}>
                     <img
                         className="w-8 mx-0.5"
-                        src={`/src/assets/${logo}`}
-                        alt={platform}
+                        src={logo.src}
+                        alt={platform + " logo"}
                     />
                 </a>
             ))}
