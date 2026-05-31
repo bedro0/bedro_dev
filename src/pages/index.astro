@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import NavBar from "../components/NavBar";
-import { Content as Bio } from "../components/Bio.md";
+import Bio from "../components/Bio";
+import Projects from "../components/Projects";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -11,6 +11,7 @@ import { Content as Bio } from "../components/Bio.md";
 	<div class="flex">
 		<div class="text-4xl sm:w-xl mx-8 sm:mx-32">
 			<Bio />
+			<div id="projects" class="mt-8"><Projects /></div>
 		</div>
 	</div>
 </Layout>
