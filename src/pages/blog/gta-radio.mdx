@@ -1,0 +1,43 @@
+---
+layout: "@/layouts/BlogPost.astro"
+title: "SanAndreasRadio.com"
+author: "bedro"
+description: "Web-app for algorithmic playback for GTA:San Andreas radio"
+updated_date: "2026-07-03"
+---
+
+<h1>
+    <a href="https://www.SanAndreasRadio.com" className="no-underline">{frontmatter.title}</a>
+</h1>
+
+Grand Theft Auto: San Andreas is widely considered to be one of the best games in the world. It had a lot of defining characteristics, including revolutionary graphics, mechanics, and sheer scale of the open world. However, a gameplay element that really resonated with me was the in-game radio.
+
+When a player gets in a car in a GTA game, immediately they will be greeted by music. This has been the case since the original GTA, but San Andreas massively improved upon the idea.
+
+In the previous 3D universe GTA games, (III, Vice City) radio stations under the hood were about an hour long uninterrupted audio files that played on repeat over and over. The main limitation with approach is that everything on the radio plays repetitively and predictably.
+
+GTA San Andreas completely overhauled this approach. It introduced a system of procedural playback, where the radio stations are a collection of small modular snippets of audio. During runtime, the game algorithmically selects different audio tracks, depending on multiple factors. Thanks to the modding community, there are some tools that export the obfuscated game files into Ogg Vorbis files that standard software can easily interact with. 
+
+The following are some examples of extracted file names and their meanings.
+
+* (Atmosphere) Evening #1.ogg - Time of day announcement.
+* (Atmosphere) Sunny #1.ogg - Weather announcement.
+* (Bridge Announce #3) Can access LS, SF, and LV.ogg - Game area unlocked.
+* (Caller) 'What a stupid name'.ogg - A listener calls in.
+* (DJ) 'Being a DJ is so hard'.ogg - DJ commentary between music tracks.
+* (ID) 'Self-important nihilists'.ogg - Radio station legal identification.
+* (Story) Casino Opening.ogg - DJ Commentary about in-game story events.
+
+These tracks add a lot of detail, and along with the music, give the game a lot of realism. Lastly, here is an example of how a song is encoded under the hood.
+
+* Mother (Intro DJ #1).ogg
+* Mother (Intro DJ #2).ogg
+* Mother (Intro).ogg
+* Mother (Mid).ogg
+* Mother (Outro DJ #1).ogg
+* Mother (Outro DJ #2).ogg
+* Mother (Outro).ogg
+
+Intro and Outro elements *mostly* have three possible audio tracks. The file labeled "Intro" is just first few seconds of a song, however "Intro DJ #1 and #2" have voice lines recorded over it, where the radio host makes some sort of a quip at the beginning of the song. Same goes for the outros.
+
+Having access to all of these files, some strategies can be utilized to procedurally stream them in a way similar to the game.

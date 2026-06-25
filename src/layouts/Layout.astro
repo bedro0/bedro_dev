@@ -1,6 +1,7 @@
 ---
-import "../styles/global.css";
-import NavBar from "../components/NavBar";
+import "@/styles/global.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 ---
 
 <!doctype html>
@@ -11,19 +12,11 @@ import NavBar from "../components/NavBar";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Badri Isiani</title>
+		<title>bedro_dev - Web Developer</title>
 	</head>
-	<body class="bg-green-950 text-green-50">
-		<NavBar />
+	<body class="bg-green-950 text-green-50 2xl:mx-[20%]">
+		<Header />
 		<slot />
+		<Footer />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
