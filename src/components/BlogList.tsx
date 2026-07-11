@@ -9,14 +9,19 @@ export default function BlogList({ posts }: { posts: Post[] }) {
     </div>
 }
 
-function DisplayPost({ post: { url, frontmatter: { title, description, author, updated_date } } }: { post: Post }) {
+function DisplayPost({ post: { url, frontmatter: { title, description, author, updated_date, tags } } }: { post: Post }) {
     return <a href={url}>
         <div className="bg-green-900 mx-16 my-4 p-8 rounded-2xl">
-            <div className="flex justify-between items-center">
-                <h1 className="text-2xl">{title}</h1>
-                <time>{updated_date}</time>
+            <p>{updated_date}</p>
+            <h1 className="text-2xl">{title}</h1>
+            <div className="flex">
+                <p className="bg-green-950 p-2 mt-4 rounded-lg">{description}</p>
             </div>
-            <p>{description}</p>
+            <div className="flex mt-4 gap-2 rounded">
+                {tags.map((tag, index) => (
+                    <div key={index} className="bg-green-950 px-2 rounded">{tag}</div>
+                ))}
+            </div>
         </div>
     </a>
 }

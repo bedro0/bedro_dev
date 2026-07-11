@@ -4,6 +4,12 @@ title: "SanAndreasRadio.com"
 author: "bedro"
 description: "Web-app for algorithmic playback for GTA:San Andreas radio"
 updated_date: "2026-07-03"
+tags:
+    - Docker
+    - JavaScript
+    - Svelte
+    - SvelteKit
+    - MPD
 ---
 
 <h1>
@@ -12,11 +18,11 @@ updated_date: "2026-07-03"
 
 Grand Theft Auto: San Andreas is widely considered to be one of the best games in the world. It had a lot of defining characteristics, including revolutionary graphics, mechanics, and sheer scale of the open world. However, a gameplay element that really resonated with me was the in-game radio.
 
-When a player gets in a car in a GTA game, immediately they will be greeted by music. This has been the case since the original GTA, but San Andreas massively improved upon the idea.
+When a player gets in a car in a GTA game, they're immediately greeted by music. This has been the case since the original GTA, but San Andreas massively improved upon the idea.
 
-In the previous 3D universe GTA games, (III, Vice City) radio stations under the hood were about an hour long uninterrupted audio files that played on repeat over and over. The main limitation with approach is that everything on the radio plays repetitively and predictably.
+In the previous 3D universe GTA games, (III, Vice City) radio stations under the hood were about an hour long uninterrupted audio files that played on repeat over and over. The main limitation of approach is that everything on the radio plays repetitively and predictably.
 
-GTA San Andreas completely overhauled this approach. It introduced a system of procedural playback, where the radio stations are a collection of small modular snippets of audio. During runtime, the game algorithmically selects different audio tracks, depending on multiple factors. Thanks to the modding community, there are some tools that export the obfuscated game files into Ogg Vorbis files that standard software can easily interact with. 
+GTA San Andreas completely overhauled this. It introduced a system of procedural playback, where the radio stations are a collection of small modular snippets of audio. During runtime, the game algorithmically selects different audio tracks. Thanks to the modding community, there are some tools that export the music from obfuscated game files into Ogg Vorbis files that standard software can easily interact with. 
 
 The following are some examples of extracted file names and their meanings.
 
@@ -41,3 +47,52 @@ These tracks add a lot of detail, and along with the music, give the game a lot 
 Intro and Outro elements *mostly* have three possible audio tracks. The file labeled "Intro" is just first few seconds of a song, however "Intro DJ #1 and #2" have voice lines recorded over it, where the radio host makes some sort of a quip at the beginning of the song. Same goes for the outros.
 
 Having access to all of these files, some strategies can be utilized to procedurally stream them in a way similar to the game.
+
+## Why not just use YouTube or Spotify?
+
+A reasonable question to ask is why go through all this trouble when the actual songs featured on these stations are already streamable elsewhere, since most of them are licensed music from real artists. The short answer is that the music was never really the point. Every station in the GTA universe is a piece of satire, voiced by a fictional cast of DJs, callers, and advertisers who react to the world around them. Stripping the commentary out and just playing the songs misses the joke. The goal of this project was to preserve that whole experience, not just the soundtrack.
+
+## Setting some ground rules
+
+Before writing any code, I needed to define what "radio-like" actually meant in terms of behavior. I settled on a handful of rules:
+
+1. Playback has to continue indefinitely. Running out of material is not an option, so the system needs a way to keep going even after everything has technically been played once.
+2. The same track should never repeat back to back, and ideally tracks should repeat as infrequently as possible so the listening experience stays fresh.
+3. The order of playback should not be static. If track A plays before track B this time, there should be a real chance B plays before A next time around.
+4. The same category shouldn't play twice consecutively, so a DJ line isn't immediately followed by another DJ line, for example.
+5. Songs should be spaced out by one or two filler tracks rather than playing back to back, mimicking the pacing of the real stations.
+
+The tricky part is that each station only has around fifteen songs and roughly fifteen tracks per secondary category, which works out to about an hour of unique content before something has to repeat.
+
+## The problem with plain shuffling
+
+The obvious first attempt is to shuffle the whole track list, play through it, and reshuffle once it's exhausted. This satisfies the "indefinite playback" and "vary the order" rules well enough, but it breaks the "no immediate repeats" rule. There's nothing stopping the last track of one shuffled pass from landing next to the same track at the start of the following pass.
+
+Digging into this a bit more, rules 2 and 3 actually pull in opposite directions. Pushing a track as far away from itself as possible eventually forces every other track into a fixed rotation, which locks the whole list into one repeating order. So maximizing "spread out repeats" ends up undermining "vary the order."
+
+## A middle ground: the Randomized Dual-Head Queue
+
+The solution I landed on treats the track list as a queue rather than a static array. Take a list like `[a, b, c, d]`. Instead of always popping from the front, the player randomly picks between the front two entries, plays whichever one gets selected, and then pushes it onto the back of the queue.
+
+So from `[a, b, c, d]`, the result is either `[b, c, d, a]` or `[a, c, d, b]`, depending on the coin flip. Either way, the track that just played is guaranteed to sit at the back of the queue, meaning it can't come up again until everything ahead of it has had a turn. Over many cycles, the random element at the front slowly reshuffles the whole ordering, so the sequence doesn't lock into a fixed loop the way a pure "maximize distance" approach would.
+
+I searched for a preexisting use of this concept, but came up short. The closest thing I found was Sliding Window Sampling, which isn't quite the same mechanism. Therefore, I ended up calling this "Randomized Dual-Head Queue," since it combines a FIFO structure with a non-deterministic algorithm.
+
+Each of the five rules maps onto a piece of this design:
+
+- **Indefinite playback** is handled by the queue simply cycling forever, replenished with the same tracks it consumes.
+- **No immediate repeats** falls out naturally, since a track can't resurface until it's cycled all the way back to the front two positions.
+- **Order variance** comes from the random pick between the two head positions, which gradually perturbs the sequence over time.
+- **No repeated categories back to back** is enforced with a separate check at selection time: if the next candidate shares a category with whatever just played, the player skips ahead or draws again.
+- **Song spacing** works the same way, using a small counter that tracks how many non-song tracks have played since the last song, and refusing to queue up another song until that counter clears one or two.
+
+## Putting it together with MPD
+
+For actual playback, I didn't want to write a custom audio engine from scratch, so the project leans on Music Player Daemon (MPD), controlled programmatically. MPD already handles the lower-level concerns of streaming and queue management, so the Randomized Dual-Head Queue logic just decides what gets pushed into MPD's playlist next. Any player with a scriptable interface would work in principle, but MPD's client protocol made it straightforward to bolt this logic on top.
+
+The web app itself lets you pick a station, and behind the scenes it walks through this same selection process, giving you a listening session that never repeats itself in quite the same way twice, in the spirit of the original game.
+
+If you'd like to learn more about the mechanics of the queue, or see the project's source, both are linked below:
+
+- [More on the Randomized Dual-Head Queue](https://www.sanandreasradio.com/rdhq)
+- [Project source on GitHub](https://github.com/bedro0/RadioSanAndreas)

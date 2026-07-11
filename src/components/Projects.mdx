@@ -1,8 +1,13 @@
 # Projects
-## GTA San Andreas Radio
-Web based application that implements radio stations from the popular videogame Grand Theft Auto: San Andreas
 
-## QR You
+## [GTA San Andreas Radio](/blog/gta-radio)
+Web-app that recreates the algorithmic radio stations from Grand Theft Auto: San Andreas, streaming the game's modular intros, DJ chatter, and songs in an order that never repeats itself the same way twice.
 
+- Built a custom playback engine to emulate the behavior of radio stations inside the game, driven programmatically through MPD (Music Player Daemon)
+- Designed and implemented Randomized Dual-Head Queue, a custom scheduling algorithm that guarantees no immediate repeats while still varying playback order over time, solving a tradeoff that plain shuffling can't
 
-Mobile app to save your contact cards and share them with others using QR codes.
+## [QR You](/blog/qr-you)
+Mobile app designed to save a hassle of exchanging contact info, by using QR codes.
+
+- Built a cross-platform iOS/Android app with Expo and React Native (TypeScript)
+- Implemented multi-card support, letting users maintain separate contact profiles (e.g. work, personal) and share the appropriate one per QR code
