@@ -2,22 +2,21 @@
 import Layout from "@/layouts/Layout.astro";
 import Bio from "@/components/Bio.mdx";
 import Projects from "@/components/Projects.mdx";
+import Experience from "@/components/Experience.mdx";
+import Body from "@/layouts/Body.astro";
+import Prose from "@/layouts/Prose.astro";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<div>
-		<div class="my-4 mx-16 text-3xl">
-			<div class="my-16 sm:w-xl">
-				<Bio />
-			</div>
-
-			<div
-				class="prose prose-slate lg:prose-xl dark:prose-invert text-green-50"
-			>
-				<Projects />
-			</div>
+	<Body>
+		<div class="my-16 sm:w-xl">
+			<Bio />
 		</div>
-	</div>
+		<Prose>
+			<Experience />
+			<Projects />
+		</Prose>
+	</Body>
 </Layout>
