@@ -1,11 +1,13 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Prose from "./Prose.astro";
+import Body from "./Body.astro";
 ---
 
 <Layout>
-    <article
-        class="prose prose-slate lg:prose-xl dark:prose-invert mx-auto text-green-50"
-    >
-        <slot />
-    </article>
+    <Body>
+        <Prose>
+            <slot />
+        </Prose>
+    </Body>
 </Layout>
