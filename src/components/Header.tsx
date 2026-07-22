@@ -11,6 +11,7 @@ export default function Header() {
             <div>
                 <a className="sm:mx-8 mx-1" href="/">bedro.dev</a>
                 <a className="sm:mx-8 mx-1 hidden sm:inline" href="/blog">Blog</a>
+                <a className="sm:mx-8 mx-1 hidden sm:inline" href="/about">About</a>
             </div>
             <div className="flex items-center">
                 <Location />
