@@ -1,7 +1,7 @@
 import type { Post } from "@/lib/blogPosts"
 
 export default function BlogList({ posts }: { posts: Post[] }) {
-    return <div className="flex flex-col gap-8 mx-8 sm:mx-16">
+    return <div className="flex flex-col gap-8">
         {
             posts.map((post, index) => <DisplayPost key={index} post={post} />
             )

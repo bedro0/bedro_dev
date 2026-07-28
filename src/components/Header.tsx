@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 export default function Header() {
     const [hamburgerMenuEnabled, setHamburgerMenuEnabled] = useState(false)
     return (
-        <nav className="text-foreground my-8 mx-8">
+        <nav className="text-foreground my-8 mx-8 xl:mx-64">
             <div className="flex justify-between whitespace-nowrap">
                 <div className="flex">
                     <a className="text-3xl" href="/">bedro.dev</a>
