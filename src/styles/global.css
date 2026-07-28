@@ -1,10 +1,24 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+:root {
+    color-scheme: light dark;
+}
+
 @theme {
-    --color-background: var(--color-emerald-950);
-    --color-foreground: var(--color-emerald-50);
-    --color-primary: var(--color-emerald-900);
-    --color-secondary: var(--color-emerald-800);
-    --color-tertiary: var(--color-green-950)
+    --color-background: light-dark(var(--color-emerald-50), var(--color-emerald-950));
+    --color-foreground: light-dark(var(--color-emerald-950), var(--color-emerald-50));
+    --color-primary: light-dark(var(--color-emerald-100), var(--color-emerald-900));
+    --color-secondary: light-dark(var(--color-emerald-200), var(--color-emerald-800));
+}
+
+/* Recolors flat-color SVG icons via mask instead of their baked-in fill,
+   so they can pick up bg-foreground (or any background color/utility). */
+.icon-mask {
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
 }

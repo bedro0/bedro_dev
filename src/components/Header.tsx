@@ -10,7 +10,7 @@ export default function Header() {
     return (
         <nav className="text-foreground my-8 mx-8 xl:mx-64">
             <div className="flex justify-between whitespace-nowrap">
-                <div className="flex">
+                <div className="flex items-center">
                     <a className="text-3xl" href="/">bedro.dev</a>
                     <div className="flex items-center">
                         <Location />
@@ -21,13 +21,18 @@ export default function Header() {
                     <a className="sm:mx-8 mx-1" href="/blog">Blog</a>
                     <a className="sm:mx-8 mx-1" href="/about">About</a>
                 </div>
-                <div className="lg:hidden inline shrink-0">
+                <div className="lg:hidden flex shrink-0">
                     <button
+                        className="flex items-center"
                         onClick={() => {
                             setHamburgerMenuEnabled(!hamburgerMenuEnabled)
                         }}
                     >
-                        <img className="h-8 mx-0.5 hover:cursor-pointer" alt="Expand" src={logoHamburger.src} />
+                        <IconMask
+                            src={logoHamburger.src}
+                            alt="Expand"
+                            className="mx-0.5 hover:cursor-pointer"
+                        />
                     </button>
                 </div>
             </div>
@@ -42,6 +47,17 @@ export default function Header() {
                 </div>}
             </div>
         </nav>
+    )
+}
+
+function IconMask({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+    return (
+        <span
+            className={`icon-mask bg-foreground inline-block h-8 w-8 ${className}`}
+            style={{ maskImage: `url(${src})`, WebkitMaskImage: `url(${src})` }}
+            role="img"
+            aria-label={alt}
+        />
     )
 }
 
@@ -73,14 +89,10 @@ function Socials() {
         <div className="flex items-center justify-center">
             {socials.map(({ platform, url, logo }) => (
                 <a
-                    className="mr-4 hover:cursor-pointer shrink-0"
+                    className="mr-4 hover:cursor-pointer shrink-0 flex items-center"
                     key={platform}
                     href={url}>
-                    <img
-                        className="h-8 mx-0.5"
-                        src={logo.src}
-                        alt={platform + " logo"}
-                    />
+                    <IconMask src={logo.src} alt={platform + " logo"} className="mx-0.5" />
                 </a>
             ))}
         </div>
@@ -110,12 +122,9 @@ function Location() {
         return () => clearInterval(intervalId);
     })
 
-    return <div className="relative text-white">
+    return <div className="relative text-foreground">
         <div className="peer flex justify-center items-center px-8 cursor-default min-w-8 lg:text-3xl text-lg">
-            <img className="h-8 mr-2"
-                src={logoLocation.src}
-                alt="Location"
-            />
+            <IconMask src={logoLocation.src} alt="Location" className="mr-2" />
             <p className="font-bold">{city}</p>
         </div>
         <p className="text-xl opacity-0 peer-hover:opacity-100 invisible peer-hover:visible transition-opacity duration-100 ease-in-out absolute bg-primary rounded-lg top-full left-1/2 -translate-x-1/2 translate-y-1/4 p-2">{time}</p>

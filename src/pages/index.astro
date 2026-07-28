@@ -10,11 +10,13 @@ import Prose from "@/layouts/Prose.astro";
 ---
 
 <Layout>
-	<Prose>
-		<div class="my-16 sm:w-xl text-3xl">
-			<Bio />
-		</div>
-		<Experience />
-		<Projects />
-	</Prose>
+	<MarginBody>
+		<Prose>
+			<div class="my-16 sm:w-xl text-3xl">
+				<Bio />
+			</div>
+			<Experience />
+			<Projects />
+		</Prose>
+	</MarginBody>
 </Layout>
