@@ -5,6 +5,7 @@ import logoEmail from "@/assets/envelope.svg"
 import logoLocation from "@/assets/location.svg"
 import logoHamburger from "@/assets/hamburger.svg"
 import { useEffect, useState } from "react"
+import IconMask from "@/components/IconMask"
 export default function Header() {
     const [hamburgerMenuEnabled, setHamburgerMenuEnabled] = useState(false)
     return (
@@ -28,7 +29,7 @@ export default function Header() {
                             setHamburgerMenuEnabled(!hamburgerMenuEnabled)
                         }}
                     >
-                        <IconMask
+                        <RenderLogo
                             src={logoHamburger.src}
                             alt="Expand"
                             className="mx-0.5 hover:cursor-pointer"
@@ -47,17 +48,6 @@ export default function Header() {
                 </div>}
             </div>
         </nav>
-    )
-}
-
-function IconMask({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
-    return (
-        <span
-            className={`icon-mask bg-foreground inline-block h-8 w-8 ${className}`}
-            style={{ maskImage: `url(${src})`, WebkitMaskImage: `url(${src})` }}
-            role="img"
-            aria-label={alt}
-        />
     )
 }
 
@@ -92,7 +82,7 @@ function Socials() {
                     className="mr-4 hover:cursor-pointer shrink-0 flex items-center"
                     key={platform}
                     href={url}>
-                    <IconMask src={logo.src} alt={platform + " logo"} className="mx-0.5" />
+                    <RenderLogo src={logo.src} alt={platform + " logo"} className="mx-0.5" />
                 </a>
             ))}
         </div>
@@ -124,9 +114,21 @@ function Location() {
 
     return <div className="relative text-foreground">
         <div className="peer flex justify-center items-center px-8 cursor-default min-w-8 lg:text-3xl text-lg">
-            <IconMask src={logoLocation.src} alt="Location" className="mr-2" />
+            <RenderLogo src={logoLocation.src} alt="Location" className="mr-2" />
             <p className="font-bold">{city}</p>
         </div>
         <p className="text-xl opacity-0 peer-hover:opacity-100 invisible peer-hover:visible transition-opacity duration-100 ease-in-out absolute bg-primary rounded-lg top-full left-1/2 -translate-x-1/2 translate-y-1/4 p-2">{time}</p>
     </div>
+}
+
+function RenderLogo({
+    src,
+    alt,
+    className = "",
+}: {
+    src: string
+    alt: string
+    className?: string
+}) {
+    return <IconMask src={src} alt={alt} className={`h-8 w-8 bg-foreground ${className}`} />
 }
