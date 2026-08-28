@@ -9,45 +9,47 @@ import IconMask from "@/components/IconMask"
 export default function Header() {
     const [hamburgerMenuEnabled, setHamburgerMenuEnabled] = useState(false)
     return (
-        <nav className="text-foreground my-8 mx-8 xl:mx-64">
-            <div className="flex justify-between whitespace-nowrap">
-                <div className="flex items-center">
-                    <a className="text-3xl" href="/">bedro.dev</a>
+        <header className="sticky top-0 z-50 py-8 px-8 xl:px-64 bg-accent">
+            <nav className="text-foreground">
+                <div className="flex justify-between whitespace-nowrap">
                     <div className="flex items-center">
-                        <Location />
-                        <div className="hidden md:inline"><Socials /></div>
+                        <a className="text-3xl" href="/">bedro.dev</a>
+                        <div className="flex items-center">
+                            <Location />
+                            <div className="hidden md:inline"><Socials /></div>
+                        </div>
+                    </div>
+                    <div className="hidden lg:inline text-3xl">
+                        <a className="sm:mx-8 mx-1" href="/blog">Blog</a>
+                        <a className="sm:mx-8 mx-1" href="/about">About</a>
+                    </div>
+                    <div className="lg:hidden flex shrink-0">
+                        <button
+                            className="flex items-center"
+                            onClick={() => {
+                                setHamburgerMenuEnabled(!hamburgerMenuEnabled)
+                            }}
+                        >
+                            <RenderLogo
+                                src={logoHamburger.src}
+                                alt="Expand"
+                                className="mx-0.5 hover:cursor-pointer"
+                            />
+                        </button>
                     </div>
                 </div>
-                <div className="hidden lg:inline text-3xl">
-                    <a className="sm:mx-8 mx-1" href="/blog">Blog</a>
-                    <a className="sm:mx-8 mx-1" href="/about">About</a>
+                <div className="flex justify-between">
+                    <div className="inline md:hidden my-6"><Socials /></div>
+                    <div></div>
+                    {hamburgerMenuEnabled && <div>
+                        <div className="lg:hidden flex flex-col items-end gap-2 text-xl">
+                            <a href="/blog">Blog</a>
+                            <a href="/about">About</a>
+                        </div>
+                    </div>}
                 </div>
-                <div className="lg:hidden flex shrink-0">
-                    <button
-                        className="flex items-center"
-                        onClick={() => {
-                            setHamburgerMenuEnabled(!hamburgerMenuEnabled)
-                        }}
-                    >
-                        <RenderLogo
-                            src={logoHamburger.src}
-                            alt="Expand"
-                            className="mx-0.5 hover:cursor-pointer"
-                        />
-                    </button>
-                </div>
-            </div>
-            <div className="flex justify-between">
-                <div className="inline md:hidden my-6"><Socials /></div>
-                <div></div>
-                {hamburgerMenuEnabled && <div>
-                    <div className="lg:hidden flex flex-col items-end gap-2 text-xl">
-                        <a href="/blog">Blog</a>
-                        <a href="/about">About</a>
-                    </div>
-                </div>}
-            </div>
-        </nav>
+            </nav>
+        </header>
     )
 }
 
