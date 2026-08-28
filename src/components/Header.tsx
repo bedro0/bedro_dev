@@ -4,8 +4,11 @@ import logoTwitch from "@/assets/glitch_flat_white.svg"
 import logoEmail from "@/assets/envelope.svg"
 import logoLocation from "@/assets/location.svg"
 import logoHamburger from "@/assets/hamburger.svg"
+import { Menu } from "lucide-react"
 import { useEffect, useState } from "react"
 import IconMask from "@/components/IconMask"
+import ThemeToggle from "./ThemeToggle"
+import { Button } from "./ui/button"
 export default function Header() {
     const [hamburgerMenuEnabled, setHamburgerMenuEnabled] = useState(false)
     return (
@@ -19,23 +22,25 @@ export default function Header() {
                             <div className="hidden md:inline"><Socials /></div>
                         </div>
                     </div>
-                    <div className="hidden lg:inline text-3xl">
-                        <a className="sm:mx-8 mx-1" href="/blog">Blog</a>
-                        <a className="sm:mx-8 mx-1" href="/about">About</a>
-                    </div>
-                    <div className="lg:hidden flex shrink-0">
-                        <button
-                            className="flex items-center"
-                            onClick={() => {
-                                setHamburgerMenuEnabled(!hamburgerMenuEnabled)
-                            }}
-                        >
-                            <RenderLogo
-                                src={logoHamburger.src}
-                                alt="Expand"
-                                className="mx-0.5 hover:cursor-pointer"
-                            />
-                        </button>
+                    <div className="flex items-center gap-2">
+                        <div className="hidden lg:inline text-3xl">
+                            <a className="sm:mx-8 mx-1" href="/blog">Blog</a>
+                            <a className="sm:mx-8 mx-1" href="/about">About</a>
+                        </div>
+                        <ThemeToggle />
+                        <div className="lg:hidden flex shrink-0">
+                            <Button
+                                variant="ghost"
+                                size="icon-lg"
+                                aria-label="Menu"
+                                className="flex items-center"
+                                onClick={() => {
+                                    setHamburgerMenuEnabled(!hamburgerMenuEnabled)
+                                }}
+                            >
+                                <Menu />
+                            </Button>
+                        </div>
                     </div>
                 </div>
                 <div className="flex justify-between">
