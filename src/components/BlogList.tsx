@@ -11,15 +11,15 @@ export default function BlogList({ posts }: { posts: Post[] }) {
 
 function DisplayPost({ post: { url, frontmatter: { title, description, author, updated_date, tags } } }: { post: Post }) {
     return <a href={url}>
-        <div className="bg-primary p-8 rounded-2xl">
-            <h1 className="text-2xl">{title}</h1>
+        <div className="bg-accent p-8 rounded-2xl">
+            <h1 className="text-2xl font-heading">{title}</h1>
             <p>{updated_date}</p>
             <div className="flex">
                 <p className=" py-2 mt-4 rounded-lg">{description}</p>
             </div>
             <div className="flex flex-wrap mt-4 gap-2 rounded">
                 {tags.map((tag, index) => (
-                    <div key={index} className="px-2 bg-secondary rounded">{tag}</div>
+                    <div key={index} className="px-2 bg-background/80 rounded">{tag}</div>
                 ))}
             </div>
         </div>

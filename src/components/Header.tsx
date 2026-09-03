@@ -1,10 +1,8 @@
 import logoGithub from "@/assets/GitHub_Invertocat_White.svg"
 import logoLinkedIn from "@/assets/linkedin.svg"
 import logoTwitch from "@/assets/glitch_flat_white.svg"
-import logoEmail from "@/assets/envelope.svg"
 import logoLocation from "@/assets/location.svg"
-import logoHamburger from "@/assets/hamburger.svg"
-import { Menu } from "lucide-react"
+import { EnvelopeIcon, ListIcon } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 import IconMask from "@/components/IconMask"
 import ThemeToggle from "./ThemeToggle"
@@ -30,7 +28,7 @@ export default function Header() {
                         <ThemeToggle />
                         <div className="lg:hidden flex shrink-0">
                             <Button
-                                variant="ghost"
+                                variant="outline"
                                 size="icon-lg"
                                 aria-label="Menu"
                                 className="flex items-center"
@@ -38,13 +36,13 @@ export default function Header() {
                                     setHamburgerMenuEnabled(!hamburgerMenuEnabled)
                                 }}
                             >
-                                <Menu />
+                                <ListIcon />
                             </Button>
                         </div>
                     </div>
                 </div>
                 <div className="flex justify-between">
-                    <div className="inline md:hidden my-6"><Socials /></div>
+                    <div className="block md:hidden mt-6"><Socials /></div>
                     <div></div>
                     {hamburgerMenuEnabled && <div>
                         <div className="lg:hidden flex flex-col items-end gap-2 text-xl">
@@ -60,12 +58,6 @@ export default function Header() {
 
 function Socials() {
     const socials = [
-        {
-            platform: "Email",
-            url: "mailto:bedro@loonartech.net",
-            logo: logoEmail
-
-        },
         {
             platform: "GitHub",
             url: "https://github.com/bedro0",
@@ -83,10 +75,15 @@ function Socials() {
         }
     ]
     return (
-        <div className="flex items-center justify-center">
+        <div className="flex gap-2 items-center justify-center">
+            <a className="hover:cursor-pointer shrink-0 flex items-center"
+                href="mailto:bedro@loonartech.net"
+            >
+                <EnvelopeIcon size="48"></EnvelopeIcon>
+            </a>
             {socials.map(({ platform, url, logo }) => (
                 <a
-                    className="mr-4 hover:cursor-pointer shrink-0 flex items-center"
+                    className="hover:cursor-pointer shrink-0 flex items-center"
                     key={platform}
                     href={url}>
                     <RenderLogo src={logo.src} alt={platform + " logo"} className="mx-0.5" />
@@ -124,7 +121,7 @@ function Location() {
             <RenderLogo src={logoLocation.src} alt="Location" className="mr-2" />
             <p className="font-bold">{city}</p>
         </div>
-        <p className="text-xl opacity-0 peer-hover:opacity-100 invisible peer-hover:visible transition-opacity duration-100 ease-in-out absolute bg-primary rounded-lg top-full left-1/2 -translate-x-1/2 translate-y-1/4 p-2">{time}</p>
+        <p className="text-xl opacity-0 peer-hover:opacity-100 invisible peer-hover:visible transition-opacity duration-100 ease-in-out absolute z-10 border-2 border-border bg-accent  text-foreground rounded-lg top-full left-1/2 -translate-x-1/2 translate-y-1/4 p-2">{time}</p>
     </div>
 }
 
