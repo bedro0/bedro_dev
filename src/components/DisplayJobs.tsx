@@ -15,13 +15,14 @@ function DisplayJob({ k, job: { position, company, headline, skills, began, ende
         <a className="flex flex-col gap-1"
             href={`/experience/${k}`}
         >
-            <div className="border-b border-border pt-8 pb-4 flex justify-between items-center">
+            <div className="border-b border-border pt-8 pb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center">
                 <div>
                     <h4 className="text-2xl ">{position}</h4>
                     <h4 className="text-md">{company}</h4>
                 </div>
-                <div className="flex flex-col items-end">
+                <div className="flex sm:flex-col items-end text-md sm:text-base">
                     <h5 className="whitespace-nowrap" >{began}</h5>
+                    <h5 className="sm:hidden">{"\u00A0-\u00A0"}</h5>
                     <h5 className="whitespace-nowrap" >{ended}</h5>
                 </div>
             </div>
