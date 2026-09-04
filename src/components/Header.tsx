@@ -41,7 +41,7 @@ export default function Header() {
                     <div className="block md:hidden mt-6"><Socials /></div>
                     <div></div>
                     {hamburgerMenuEnabled && <div>
-                        <div className="lg:hidden flex flex-col items-end gap-2 text-xl">
+                        <div className="lg:hidden mt-2 flex flex-col items-end gap-2 text-xl">
                             <a href="/blog">Blog</a>
                             <a href="/about">About</a>
                         </div>
