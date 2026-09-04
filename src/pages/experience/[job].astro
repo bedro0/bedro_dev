@@ -1,0 +1,24 @@
+---
+import Prose from "@/layouts/Prose.astro";
+import Root from "@/layouts/Root.astro";
+import { jobs } from "@/lib/experience";
+export function getStaticPaths() {
+    return Object.entries(jobs).map(([key]) => ({
+        params: { job: key },
+    }));
+}
+export const prerender = true;
+const { job } = Astro.params;
+const jobEntry = jobs[job];
+---
+
+<Root>
+    <Prose>
+        <h3>{jobEntry.position} - {jobEntry.company}</h3>
+        <h4>{jobEntry.began} - {jobEntry.ended} ({jobEntry.type})</h4>
+        <p>{jobEntry.headline}</p>
+        <ul>
+            {jobEntry.accomplishments.map((elem) => <li>{elem}</li>)}
+        </ul>
+    </Prose>
+</Root>

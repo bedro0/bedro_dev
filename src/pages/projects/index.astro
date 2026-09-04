@@ -1,0 +1,28 @@
+---
+import Prose from "@/layouts/Prose.astro";
+import Root from "@/layouts/Root.astro";
+import { projects } from "@/lib/experience";
+---
+
+<Root>
+    <Prose>
+        {
+            Object.entries(projects).map(([key, project]) => (
+                <div>
+                    <a class="no-underline w-fit" href={`/blog/${key}`}>
+                        <h3 class="hover:text-sidebar-primary w-fit">
+                            {project.title}
+                        </h3>
+                    </a>
+                    <h4>{project.created}</h4>
+                    <p>{project.headline}</p>
+                    <ul>
+                        {project.accomplishments.map((elem) => (
+                            <li>{elem}</li>
+                        ))}
+                    </ul>
+                </div>
+            ))
+        }
+    </Prose>
+</Root>
