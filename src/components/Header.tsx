@@ -1,8 +1,4 @@
-import logoGithub from "@/assets/GitHub_Invertocat_White.svg"
-import logoLinkedIn from "@/assets/linkedin.svg"
-import logoTwitch from "@/assets/glitch_flat_white.svg"
-import logoLocation from "@/assets/location.svg"
-import { EnvelopeIcon, ListIcon } from "@phosphor-icons/react"
+import { EnvelopeIcon, ListIcon, MapPinIcon, GithubLogoIcon, LinkedinLogoIcon, TwitchLogoIcon } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 import IconMask from "@/components/IconMask"
 import ThemeToggle from "./ThemeToggle"
@@ -10,20 +6,20 @@ import { Button } from "./ui/button"
 export default function Header() {
     const [hamburgerMenuEnabled, setHamburgerMenuEnabled] = useState(false)
     return (
-        <header className="sticky top-0 z-50 py-8 px-8 xl:px-64 bg-accent">
+        <header className="sticky top-0 z-50 p-4 sm:p-8 xl:px-64 bg-accent">
             <nav className="text-foreground">
                 <div className="flex justify-between whitespace-nowrap">
                     <div className="flex items-center">
-                        <a className="text-3xl" href="/">bedro.dev</a>
+                        <a className="text-3xl hover:text-sidebar-primary" href="/">bedro.dev</a>
                         <div className="flex items-center">
                             <Location />
                             <div className="hidden md:inline"><Socials /></div>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <div className="hidden lg:inline text-3xl">
-                            <a className="sm:mx-8 mx-1" href="/blog">Blog</a>
-                            <a className="sm:mx-8 mx-1" href="/about">About</a>
+                    <div className="flex items-center gap-1 sm:gap-2">
+                        <div className="hidden lg:inline text-3xl ">
+                            <a className="sm:mx-8 mx-1 hover:text-sidebar-primary" href="/blog">Blog</a>
+                            <a className="sm:mx-8 mx-1 hover:text-sidebar-primary" href="/about">About</a>
                         </div>
                         <ThemeToggle />
                         <div className="lg:hidden flex shrink-0">
@@ -59,34 +55,35 @@ export default function Header() {
 function Socials() {
     const socials = [
         {
+            platform: "Email",
+            url: "mailto:bedro@loonartech.net",
+            Logo: EnvelopeIcon
+        },
+        {
             platform: "GitHub",
             url: "https://github.com/bedro0",
-            logo: logoGithub
+            Logo: GithubLogoIcon
         },
         {
             platform: "LinkedIn",
             url: "https://www.linkedin.com/in/bedro0/",
-            logo: logoLinkedIn
+            Logo: LinkedinLogoIcon
         },
         {
             platform: "Twitch",
             url: "https://www.twitch.tv/bedro_dev",
-            logo: logoTwitch
+            Logo: TwitchLogoIcon
         }
     ]
     return (
         <div className="flex gap-2 items-center justify-center">
-            <a className="hover:cursor-pointer shrink-0 flex items-center"
-                href="mailto:bedro@loonartech.net"
-            >
-                <EnvelopeIcon size="48"></EnvelopeIcon>
-            </a>
-            {socials.map(({ platform, url, logo }) => (
+            {socials.map(({ platform, url, Logo }) => (
                 <a
                     className="hover:cursor-pointer shrink-0 flex items-center"
                     key={platform}
-                    href={url}>
-                    <RenderLogo src={logo.src} alt={platform + " logo"} className="mx-0.5" />
+                    href={url}
+                >
+                    <Logo className="hover:text-sidebar-primary" size="48"></Logo>
                 </a>
             ))}
         </div>
@@ -116,9 +113,9 @@ function Location() {
         return () => clearInterval(intervalId);
     })
 
-    return <div className="relative text-foreground">
-        <div className="peer flex justify-center items-center px-8 cursor-default min-w-8 lg:text-3xl text-lg">
-            <RenderLogo src={logoLocation.src} alt="Location" className="mr-2" />
+    return <div className="relative text-foreground hover:text-sidebar-primary">
+        <div className="peer flex justify-center items-center px-8 cursor-default min-w-8 lg:text-3xl text-2xl">
+            <MapPinIcon></MapPinIcon>
             <p className="font-bold">{city}</p>
         </div>
         <p className="text-xl opacity-0 peer-hover:opacity-100 invisible peer-hover:visible transition-opacity duration-100 ease-in-out absolute z-10 border-2 border-border bg-accent  text-foreground rounded-lg top-full left-1/2 -translate-x-1/2 translate-y-1/4 p-2">{time}</p>
