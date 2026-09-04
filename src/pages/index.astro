@@ -1,24 +1,27 @@
 ---
 import Root from "@/layouts/Root.astro";
-import Bio from "@/components/Bio.mdx";
-import Projects from "@/components/Projects.mdx";
-import Experience from "@/components/Experience.mdx";
+import Tagline from "@/components/Tagline";
 import MarginBody from "@/layouts/MarginBody.astro";
-import Prose from "@/layouts/Prose.astro";
+import DisplayJobs from "@/components/DisplayJobs";
+import DisplayProjects from "@/components/DisplayProjects";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Root>
-	<div class="my-4 mx-8 sm:mx-16 md:mx-32 lg:mx-16 xl:mx-32 2xl:mx-64">
-		<Prose>
-			<div class="my-16 sm:w-xl text-3xl">
-				<Bio />
-			</div>
-		</Prose>
-		<div class="lg:flex flex-row gap-64">
-			<Prose><Projects /></Prose>
-			<Prose><Experience /></Prose>
-		</div>
-	</div>
+	<MarginBody>
+		<section class="my-16 sm:w-xl">
+			<Tagline />
+		</section>
+		<section id="experience">
+			<DisplayJobs />
+		</section>
+		<section id="projects">
+			<DisplayProjects />
+		</section>
+		<!-- <div class="lg:flex flex-row gap-64">
+				<Prose><Projects /></Prose>
+				<Prose><Experience /></Prose>
+			</div> -->
+	</MarginBody>
 </Root>
