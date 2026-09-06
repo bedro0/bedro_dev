@@ -70,12 +70,39 @@ const jobs: Record<string, Job> = {
             "Root Cause Analysis",
             "Multi-Tenant Administration"
         ]
+    },
+    "bate-transport": {
+        position: "IT Specialist",
+        company: "BATE Transportation LLC",
+        type: "Contract Work",
+        began: "Jul 2020",
+        ended: "Jun 2024",
+        headline: "Sole IT specialist for a transportation company, running help-desk support, infrastructure, and networking for office and vehicle fleet.",
+        accomplishments: [
+            "Built and maintained a centralized server with redundancies and backups, achieving 99.9% uptime for business-critical data and shared services",
+            "Designed and implemented a SoHo network with full Ethernet connectivity across all workstations for reliable, efficient performance",
+            "Equipped fleet vehicles with dual WAN routers and a Dockerized WireGuard VPN, giving drivers continuous data access regardless of location"
+        ],
+        skills: [
+            "Systems Architecture",
+            "Containerization",
+            "Infrastructure Design",
+            "Docker",
+            "WireGuard",
+            "Server Administration",
+            "Backups",
+            "VPN",
+            "Networking",
+            "Self-Hosted Infrastructure",
+            "Endpoint Management",
+            "Fleet Connectivity"
+        ]
     }
 }
 
 const projects: Record<string, Project> = {
     "gta-radio": {
-        title: "San Andreas Web-Radio",
+        title: "San Andreas Radio",
         headline: "Web-app that recreates the radio from Grand Theft Auto: San Andreas.",
         created: "Dec 2024",
         accomplishments: [

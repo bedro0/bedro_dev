@@ -9,7 +9,7 @@ export default function DisplayProjects() {
                     key={key}
                     href={`/blog/${key}`}
                     title={project.title}
-                    dateLabel={[project.created]}
+                    dateLabel={project.created}
                     headline={project.headline}
                     skills={project.skills}
                 />

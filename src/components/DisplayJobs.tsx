@@ -10,7 +10,7 @@ export default function DisplayJobs() {
                     href={`/experience/${key}`}
                     title={job.position}
                     subtitle={job.company}
-                    dateLabel={[job.began, job.ended]}
+                    dateLabel={`${job.began} - ${job.ended}`}
                     headline={job.headline}
                     skills={job.skills}
                 />
