@@ -59,6 +59,7 @@ function Socials() {
         <div className="flex gap-2 items-center justify-center">
             {socials.map(({ platform, url, Logo, hoverColor }) => (
                 <a
+                    title={platform}
                     className={`hover:cursor-pointer shrink-0 flex items-center ${hoverColor ? "hover:text-(--brand-hover-light) dark:hover:text-(--brand-hover-dark)" : "hover:text-sidebar-primary"}`}
                     key={platform}
                     href={url}

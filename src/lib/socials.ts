@@ -1,5 +1,5 @@
 import type { Icon } from "@phosphor-icons/react";
-import { EnvelopeIcon, GithubLogoIcon, LinkedinLogoIcon, TwitchLogoIcon } from "@phosphor-icons/react";
+import { EnvelopeIcon, FileTextIcon, GithubLogoIcon, LinkedinLogoIcon, TwitchLogoIcon } from "@phosphor-icons/react";
 
 export type Social = {
     platform: string;
@@ -9,6 +9,11 @@ export type Social = {
 };
 
 export const socials: Social[] = [
+    {
+        platform: "Resume",
+        url: "/resume.pdf",
+        Logo: FileTextIcon
+    },
     {
         platform: "Email",
         url: "mailto:bedro@loonartech.net",

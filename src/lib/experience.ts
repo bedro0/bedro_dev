@@ -7,6 +7,7 @@ export type Job = {
     headline: string;
     accomplishments: string[];
     skills: string[];
+    showOnResume?: boolean;
 }
 
 export type Project = {
@@ -48,6 +49,7 @@ const jobs: Record<string, Job> = {
         position: "IT Technician",
         company: "Leveldesk",
         type: "Full Time",
+        showOnResume: false,
         began: "Aug 2024",
         ended: "Present",
         headline: "Technician at a small MSP managing IT infrastructure for 20+ SMB clients, from single-user offices to 100+ employee organizations.",
@@ -75,6 +77,7 @@ const jobs: Record<string, Job> = {
         position: "IT Specialist",
         company: "BATE Transportation LLC",
         type: "Contract Work",
+        showOnResume: false,
         began: "Jul 2020",
         ended: "Jun 2024",
         headline: "Sole IT specialist for a transportation company, running help-desk support, infrastructure, and networking for office and vehicle fleet.",
