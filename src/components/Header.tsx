@@ -67,23 +67,26 @@ function Socials() {
         {
             platform: "LinkedIn",
             url: "https://www.linkedin.com/in/bedro0/",
-            Logo: LinkedinLogoIcon
+            Logo: LinkedinLogoIcon,
+            hoverColor: "#0a66c2"
         },
         {
             platform: "Twitch",
             url: "https://www.twitch.tv/bedro_dev",
-            Logo: TwitchLogoIcon
+            Logo: TwitchLogoIcon,
+            hoverColor: "#9146FF"
         }
     ]
     return (
         <div className="flex gap-2 items-center justify-center">
-            {socials.map(({ platform, url, Logo }) => (
+            {socials.map(({ platform, url, Logo, hoverColor }) => (
                 <a
-                    className="hover:cursor-pointer shrink-0 flex items-center"
+                    className="hover:cursor-pointer shrink-0 flex items-center hover:text-(--social-hover)"
                     key={platform}
                     href={url}
+                    style={{ "--social-hover": hoverColor ?? "var(--sidebar-primary)" } as React.CSSProperties}
                 >
-                    <Logo className="hover:text-sidebar-primary" size="48"></Logo>
+                    <Logo size="48" />
                 </a>
             ))}
         </div>
