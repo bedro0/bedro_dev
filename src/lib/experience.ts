@@ -134,7 +134,9 @@ const projects: Record<string, Project> = {
         skills: [
             "React Native",
             "Expo",
-            "Android"]
+            "SQLite",
+            "Mobile Development"
+        ]
     }
 }
 

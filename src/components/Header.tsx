@@ -1,8 +1,10 @@
-import { EnvelopeIcon, ListIcon, MapPinIcon, GithubLogoIcon, LinkedinLogoIcon, TwitchLogoIcon } from "@phosphor-icons/react"
+import { ListIcon, MapPinIcon } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 import IconMask from "@/components/IconMask"
 import ThemeToggle from "./ThemeToggle"
 import { Button } from "./ui/button"
+import { socials } from "@/lib/socials"
+import { brandHoverVars } from "@/lib/color"
 export default function Header() {
     const [hamburgerMenuEnabled, setHamburgerMenuEnabled] = useState(false)
     return (
@@ -53,38 +55,14 @@ export default function Header() {
 }
 
 function Socials() {
-    const socials = [
-        {
-            platform: "Email",
-            url: "mailto:bedro@loonartech.net",
-            Logo: EnvelopeIcon
-        },
-        {
-            platform: "GitHub",
-            url: "https://github.com/bedro0",
-            Logo: GithubLogoIcon
-        },
-        {
-            platform: "LinkedIn",
-            url: "https://www.linkedin.com/in/bedro0/",
-            Logo: LinkedinLogoIcon,
-            hoverColor: "#0a66c2"
-        },
-        {
-            platform: "Twitch",
-            url: "https://www.twitch.tv/bedro_dev",
-            Logo: TwitchLogoIcon,
-            hoverColor: "#9146FF"
-        }
-    ]
     return (
         <div className="flex gap-2 items-center justify-center">
             {socials.map(({ platform, url, Logo, hoverColor }) => (
                 <a
-                    className="hover:cursor-pointer shrink-0 flex items-center hover:text-(--social-hover)"
+                    className={`hover:cursor-pointer shrink-0 flex items-center ${hoverColor ? "hover:text-(--brand-hover-light) dark:hover:text-(--brand-hover-dark)" : "hover:text-sidebar-primary"}`}
                     key={platform}
                     href={url}
-                    style={{ "--social-hover": hoverColor ?? "var(--sidebar-primary)" } as React.CSSProperties}
+                    style={brandHoverVars(hoverColor) as React.CSSProperties}
                 >
                     <Logo size="48" />
                 </a>

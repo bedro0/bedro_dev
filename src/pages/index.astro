@@ -5,8 +5,7 @@ import MarginBody from "@/layouts/MarginBody.astro";
 import DisplayJobs from "@/components/DisplayJobs";
 import DisplayProjects from "@/components/DisplayProjects";
 import TechStack from "@/components/TechStack";
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Connect from "@/components/Connect";
 ---
 
 <Root>
@@ -23,6 +22,10 @@ import TechStack from "@/components/TechStack";
 		</section>
 		<section id="projects">
 			<DisplayProjects />
+		</section>
+		<div class="h-16"></div>
+		<section id="about">
+			<Connect />
 		</section>
 	</MarginBody>
 </Root>
