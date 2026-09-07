@@ -1,10 +1,12 @@
 ---
 import Root from "@/layouts/Root.astro";
 import Prose from "./Prose.astro";
+import BackLink from "@/components/BackLink.astro";
 ---
 
 <Root>
     <Prose>
+        <BackLink href="/blog" label="Back to blog" />
         <slot />
     </Prose>
 </Root>

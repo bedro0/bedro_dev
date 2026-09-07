@@ -2,9 +2,13 @@
 import { blogPosts } from "@/lib/blogPosts";
 import Root from "@/layouts/Root.astro";
 import BlogList from "@/components/BlogList";
+import BackLink from "@/components/BackLink.astro";
 ---
 
 <Root>
+    <div class="mx-8">
+        <BackLink href="/" label="Back to home" />
+    </div>
     <h1 class="text-4xl m-8">Blog Posts</h1>
     <BlogList posts={blogPosts} />
 </Root>

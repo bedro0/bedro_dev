@@ -2,10 +2,12 @@
 import Prose from "@/layouts/Prose.astro";
 import Root from "@/layouts/Root.astro";
 import { projects } from "@/lib/experience";
+import BackLink from "@/components/BackLink.astro";
 ---
 
 <Root>
     <Prose>
+        <BackLink href="/" label="Back to home" />
         {
             Object.entries(projects).map(([key, project]) => (
                 <div>
