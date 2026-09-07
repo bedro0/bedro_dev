@@ -65,7 +65,7 @@ function Socials() {
                     href={url}
                     style={brandHoverVars(hoverColor) as React.CSSProperties}
                 >
-                    <Logo size="48" />
+                    <Logo className="size-8 md:size-10 2xl:size-12" />
                 </a>
             ))}
         </div>
