@@ -76,12 +76,12 @@ export const stack: StackCategory[] = [
         label: "Frameworks",
         Icon: StackIcon,
         items: [
+            { name: "Node.js", Icon: SiNodedotjs, hex: SiNodedotjsHex },
             { name: "React", Icon: SiReact, hex: SiReactHex },
             { name: "Next.js", Icon: SiNextdotjs, hex: SiNextdotjsHex },
             { name: "Astro", Icon: SiAstro, hex: SiAstroHex },
             { name: "Svelte / SvelteKit", Icon: SiSvelte, hex: SiSvelteHex },
             { name: "TanStack Start", Icon: SiTanstack, hex: SiTanstackHex },
-            { name: "Node.js", Icon: SiNodedotjs, hex: SiNodedotjsHex },
         ],
     },
     {

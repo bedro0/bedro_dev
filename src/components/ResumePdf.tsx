@@ -17,7 +17,6 @@ Font.register({
 const NAME = "Badri Isiani";
 const EMAIL = socials.filter(elem => elem.platform === "Email")[0]
 const PHONE = parsePhoneNumber("+13472928885");
-const GITHUB = socials.filter(elem => elem.platform === "GitHub")[0]
 type EducationItem = {
     institution: string;
     degree: string;
@@ -171,7 +170,9 @@ function Header() {
         <View style={styles.header}>
             <Text style={styles.name}>{NAME}</Text>
             <Text style={styles.contact}>
-                <Link src={`mailto:${EMAIL.url}`}>{EMAIL.url.replace("mailto:", "")}</Link> · <Link src={`tel:${PHONE}`}>{PHONE ? PHONE.formatNational() : ""}</Link> · <Link src={GITHUB.url}>{GITHUB.url.replace("https://", "")}</Link>
+                <Link src="https://bedro.dev">bedro.dev</Link>&nbsp;·&nbsp;
+                <Link src={`mailto:${EMAIL.url}`}>{EMAIL.url.replace("mailto:", "")}</Link>&nbsp;·&nbsp;
+                {PHONE && <Link src={`tel:${PHONE?.number}`}>{PHONE?.formatNational()}</Link>}
             </Text>
         </View>
     );
