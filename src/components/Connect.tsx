@@ -1,9 +1,10 @@
 import { socials } from "@/lib/socials";
 import { brandHoverVars } from "@/lib/color";
+import { Button } from "./ui/button";
 
 export default function Connect() {
     return (
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8">
+        <div className="flex flex-col sm:justify-between gap-8">
             <div className="flex flex-col gap-3 sm:max-w-md">
                 <h3 className="text-4xl">About</h3>
                 <p className="text-muted-foreground">
@@ -17,6 +18,9 @@ export default function Connect() {
                 </a>
             </div>
             <div className="flex flex-wrap gap-2">
+                <Button size="lg">
+                    <a href="#projects">View Projects</a>
+                </Button>
                 {socials.map(({ platform, url, Logo, hoverColor }) => (
                     <a
                         key={platform}

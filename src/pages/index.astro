@@ -1,6 +1,5 @@
 ---
 import Root from "@/layouts/Root.astro";
-import Tagline from "@/components/Tagline";
 import DisplayJobs from "@/components/DisplayJobs";
 import DisplayProjects from "@/components/DisplayProjects";
 import TechStack from "@/components/TechStack";
@@ -8,8 +7,8 @@ import Connect from "@/components/Connect";
 ---
 
 <Root>
-	<section class="sm:w-xl">
-		<Tagline />
+	<section id="about">
+		<Connect />
 	</section>
 	<div class="h-16"></div>
 	<section id="stack">
@@ -20,9 +19,5 @@ import Connect from "@/components/Connect";
 	</section>
 	<section id="projects">
 		<DisplayProjects />
-	</section>
-	<div class="h-16"></div>
-	<section id="about">
-		<Connect />
 	</section>
 </Root>
