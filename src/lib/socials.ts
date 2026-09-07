@@ -16,7 +16,7 @@ export const socials: Social[] = [
     },
     {
         platform: "Email",
-        url: "mailto:bedro@loonartech.net",
+        url: "mailto:bedro@bedro.dev",
         Logo: EnvelopeIcon,
     },
     {
