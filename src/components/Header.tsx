@@ -61,6 +61,7 @@ function Socials() {
                 <a
                     title={platform}
                     className={`hover:cursor-pointer shrink-0 flex items-center ${hoverColor ? "hover:text-(--brand-hover-light) dark:hover:text-(--brand-hover-dark)" : "hover:text-sidebar-primary"}`}
+                    target="_blank"
                     key={platform}
                     href={url}
                     style={brandHoverVars(hoverColor) as React.CSSProperties}
