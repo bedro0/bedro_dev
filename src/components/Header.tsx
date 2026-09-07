@@ -8,7 +8,7 @@ import { brandHoverVars } from "@/lib/color"
 export default function Header() {
     const [hamburgerMenuEnabled, setHamburgerMenuEnabled] = useState(false)
     return (
-        <header className="sticky top-0 z-50 p-4 sm:p-8 xl:px-64 bg-accent">
+        <header className="sticky top-0 z-50 py-4 sm:py-8 px-8  md:px-16 2xl:px-64 bg-accent">
             <nav className="text-foreground">
                 <div className="flex justify-between whitespace-nowrap">
                     <div className="flex items-center">

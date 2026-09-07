@@ -1,13 +1,10 @@
 ---
 import Root from "@/layouts/Root.astro";
 import Prose from "./Prose.astro";
-import MarginBody from "./MarginBody.astro";
 ---
 
 <Root>
-    <MarginBody>
-        <Prose>
-            <slot />
-        </Prose>
-    </MarginBody>
+    <Prose>
+        <slot />
+    </Prose>
 </Root>

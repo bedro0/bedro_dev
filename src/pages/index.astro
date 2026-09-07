@@ -1,7 +1,6 @@
 ---
 import Root from "@/layouts/Root.astro";
 import Tagline from "@/components/Tagline";
-import MarginBody from "@/layouts/MarginBody.astro";
 import DisplayJobs from "@/components/DisplayJobs";
 import DisplayProjects from "@/components/DisplayProjects";
 import TechStack from "@/components/TechStack";
@@ -9,23 +8,21 @@ import Connect from "@/components/Connect";
 ---
 
 <Root>
-	<MarginBody>
-		<section class="sm:w-xl">
-			<Tagline />
-		</section>
-		<div class="h-16"></div>
-		<section id="stack">
-			<TechStack />
-		</section>
-		<section id="experience">
-			<DisplayJobs />
-		</section>
-		<section id="projects">
-			<DisplayProjects />
-		</section>
-		<div class="h-16"></div>
-		<section id="about">
-			<Connect />
-		</section>
-	</MarginBody>
+	<section class="sm:w-xl">
+		<Tagline />
+	</section>
+	<div class="h-16"></div>
+	<section id="stack">
+		<TechStack />
+	</section>
+	<section id="experience">
+		<DisplayJobs />
+	</section>
+	<section id="projects">
+		<DisplayProjects />
+	</section>
+	<div class="h-16"></div>
+	<section id="about">
+		<Connect />
+	</section>
 </Root>
