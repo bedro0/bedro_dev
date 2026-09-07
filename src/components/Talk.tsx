@@ -9,7 +9,7 @@ export default function Talk() {
             <p className="text-2xl">
                 Looking for freelance work or a full-time role, but I'll also take your weird project ideas.
             </p>
-            <a className="w-fit text-lg text-sidebar-primary" href={email}>
+            <a className="w-fit text-lg text-sidebar-primary no-underline" href={email}>
                 {email.replace("mailto:", "")}
             </a>
         </div>

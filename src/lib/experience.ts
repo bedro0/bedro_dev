@@ -113,7 +113,7 @@ const projects: Record<string, Project> = {
             "Built a custom playback engine to emulate the in-game radio, driven programmatically through MPD (Music Player Daemon)",
             "Designed and implemented a custom scheduling algorithm to avoid repeating audio tracks.",
             "Invented the Randomized Dual-Head Queue, a FIFO-based selection algorithm that keeps playback order varied without ever repeating a track back-to-back",
-            "Enforced category- and pacing-aware playback rules (no consecutive DJ lines, songs spaced by filler tracks) to mimic the pacing of the real in-game stations"
+            "Enforced category- and pacing-aware playback rules to mimic the pacing of the real in-game stations"
         ],
         topSkills: 4,
         skills: [
@@ -122,7 +122,6 @@ const projects: Record<string, Project> = {
             "Docker",
             "Bash",
             "Multimedia",
-            "JavaScript",
             "SASS",
             "MPD",
             "Icecast",

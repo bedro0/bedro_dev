@@ -8,8 +8,8 @@ export default function Connect() {
             <div className="flex flex-col gap-3 sm:max-w-md">
                 <h3 className="text-4xl">About</h3>
                 <p className="text-muted-foreground">
-                    I'm Badri (bedro), based in NYC. My day job is backend
-                    infrastructure and systems design, and I take on freelance
+                    I'm Badri (bedro), based in NYC.
+                    I work in IT infrastructure by day and I take on freelance
                     projects outside of it. I also build personal projects,
                     which I stream on Twitch.
                 </p>
