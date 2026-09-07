@@ -140,7 +140,7 @@ export default function ResumePdf() {
                             <Entry
                                 key={project.title}
                                 heading={project.title}
-                                subheading={project.skills.join(", ")}
+                                subheading={project.skills.slice(0, project.topSkills).join(", ")}
                                 dateLabel={project.created}
                                 bullets={project.accomplishments}
                             />

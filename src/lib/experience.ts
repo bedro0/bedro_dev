@@ -15,6 +15,7 @@ export type Project = {
     headline: string,
     created: string,
     accomplishments: string[];
+    topSkills: number,
     skills: string[]
 }
 const jobs: Record<string, Job> = {
@@ -49,7 +50,7 @@ const jobs: Record<string, Job> = {
         position: "IT Technician",
         company: "Leveldesk",
         type: "Full Time",
-        showOnResume: false,
+        showOnResume: true,
         began: "Aug 2024",
         ended: "Present",
         headline: "Technician at a small MSP managing IT infrastructure for 20+ SMB clients, from single-user offices to 100+ employee organizations.",
@@ -114,9 +115,12 @@ const projects: Record<string, Project> = {
             "Invented the Randomized Dual-Head Queue, a FIFO-based selection algorithm that keeps playback order varied without ever repeating a track back-to-back",
             "Enforced category- and pacing-aware playback rules (no consecutive DJ lines, songs spaced by filler tracks) to mimic the pacing of the real in-game stations"
         ],
+        topSkills: 4,
         skills: [
+            "Node.js",
             "Svelte / SvelteKit",
             "Docker",
+            "Bash",
             "Multimedia",
             "JavaScript",
             "SASS",
@@ -134,6 +138,7 @@ const projects: Record<string, Project> = {
             "Generated vCard-encoded QR codes that phone camera apps recognize natively, saving a new contact without any manual entry",
             "Evaluated vCard against the more compact MeCard format to balance how much contact info a card carries against QR scan reliability"
         ],
+        topSkills: 3,
         skills: [
             "React Native",
             "Expo",

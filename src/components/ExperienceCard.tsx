@@ -20,7 +20,7 @@ export default function ExperienceCard({ href, title, subtitle, dateLabel, headl
             </div>
             <h5 className="whitespace-nowrap text-sm">{dateLabel}</h5>
         </div>
-        <div className="flex flex-col gap-4 pt-4 pb-8 justify-end" >
+        <div className="flex flex-col gap-4 pt-4 pb-8 flex-1" >
             <p className="">{headline}</p>
             <div className="flex flex-wrap gap-2">
                 {skills.slice(0, 3).map((skill) => (
