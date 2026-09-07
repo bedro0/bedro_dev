@@ -1,0 +1,28 @@
+---
+import Prose from "@/layouts/Prose.astro";
+import Root from "@/layouts/Root.astro";
+import { jobs } from "@/lib/experience";
+---
+
+<Root>
+    <Prose>
+        {
+            Object.entries(jobs).map(([key, job]) => (
+                <div>
+                    <h3 class="w-fit">
+                        {job.position} - {job.company}
+                    </h3>
+                    <h4>
+                        {job.began} - {job.ended} ({job.type})
+                    </h4>
+                    <p>{job.headline}</p>
+                    <ul>
+                        {job.accomplishments.map((elem) => (
+                            <li>{elem}</li>
+                        ))}
+                    </ul>
+                </div>
+            ))
+        }
+    </Prose>
+</Root>

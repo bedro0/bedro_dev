@@ -1,0 +1,28 @@
+---
+import Prose from "@/layouts/Prose.astro";
+import Root from "@/layouts/Root.astro";
+import { projects } from "@/lib/experience";
+export function getStaticPaths() {
+    return Object.entries(projects).map(([key]) => ({
+        params: { project: key },
+    }));
+}
+export const prerender = true;
+const { project } = Astro.params;
+const projectEntry = projects[project];
+---
+
+<Root>
+    <Prose>
+        <a class="no-underline w-fit" href={`/blog/${project}`}
+            ><h3 class="hover:text-sidebar-primary w-fit">
+                {projectEntry.title}
+            </h3></a
+        >
+        <h4>{projectEntry.created}</h4>
+        <p>{projectEntry.headline}</p>
+        <ul>
+            {projectEntry.accomplishments.map((elem) => <li>{elem}</li>)}
+        </ul>
+    </Prose>
+</Root>

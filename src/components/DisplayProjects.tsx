@@ -7,7 +7,7 @@ export default function DisplayProjects() {
             {Object.entries(projects).map(([key, project]) => (
                 <ExperienceCard
                     key={key}
-                    href={`/blog/${key}`}
+                    href={`/projects/${key}`}
                     title={project.title}
                     dateLabel={project.created}
                     headline={project.headline}
