@@ -9,9 +9,9 @@ export default function Connect() {
                 <h3 className="text-4xl">About</h3>
                 <p className="text-muted-foreground">
                     I'm Badri (bedro), based in NYC.
-                    I work in IT infrastructure by day and I take on freelance
-                    projects outside of it. I also build personal projects,
-                    which I stream on Twitch.
+                    I'm a full-stack developer with a primary focus on backend.
+                    Outside of my day job in IT infrastructure, I take on freelance projects.
+                    I also build personal projects, which I stream on Twitch.
                 </p>
                 <a className="w-fit hover:text-sidebar-primary" href="/about">
                     Read more →
