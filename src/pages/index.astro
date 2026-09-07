@@ -2,8 +2,10 @@
 import Root from "@/layouts/Root.astro";
 import DisplayJobs from "@/components/DisplayJobs";
 import DisplayProjects from "@/components/DisplayProjects";
+import DisplayBlog from "@/components/DisplayBlog";
 import TechStack from "@/components/TechStack";
 import Connect from "@/components/Connect";
+import Talk from "@/components/Talk";
 ---
 
 <Root>
@@ -19,5 +21,13 @@ import Connect from "@/components/Connect";
 	</section>
 	<section id="projects">
 		<DisplayProjects />
+	</section>
+	<section id="writing">
+		<DisplayBlog />
+	</section>
+	<section id="talk">
+		<div class="prose prose-slate lg:prose-xl dark:prose-invert mx-auto">
+			<Talk />
+		</div>
 	</section>
 </Root>

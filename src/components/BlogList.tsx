@@ -1,4 +1,4 @@
-import type { Post } from "@/lib/blogPosts"
+import { skillsForPost, type Post } from "@/lib/blogPosts"
 
 export default function BlogList({ posts }: { posts: Post[] }) {
     return <div className="flex flex-col gap-8">
@@ -9,7 +9,9 @@ export default function BlogList({ posts }: { posts: Post[] }) {
     </div>
 }
 
-function DisplayPost({ post: { url, frontmatter: { title, description, author, updated_date, skills } } }: { post: Post }) {
+function DisplayPost({ post }: { post: Post }) {
+    const { url, frontmatter: { title, description, updated_date } } = post
+    const skills = skillsForPost(post)
     return <a href={url}>
         <div className="bg-accent p-8 rounded-2xl">
             <h1 className="text-2xl">{title}</h1>
