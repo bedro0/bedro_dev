@@ -24,7 +24,7 @@ const jobs: Record<string, Job> = {
         company: "Copalion Advertising LLC",
         type: "Freelance",
         began: "Feb 2026",
-        ended: "Present",
+        ended: "Aug 2026",
         headline: "Sole outside developer for an advertising agency, responsible for a Next.js/Prisma CRM and two marketing sites.",
         accomplishments: [
             "Built a lead-routing system that delivers qualified leads directly into each partner's own CRM in real time",
