@@ -1,0 +1,63 @@
+---
+layout: "@/layouts/BlogPost.astro"
+title: "k-Window Recirculating Queue"
+author: "bedro"
+description: "A queue mechanism for injecting gradual entropy into ordered, repeatedly-consumed data"
+subtitle: "Introducing Gradual Entropy into Ordered Data"
+updated_date: "2026-09-13"
+---
+### {frontmatter.updated_date}
+<h1>{frontmatter.title}</h1>
+
+## The problem, stated generally
+
+Take any bounded, ordered collection of items that has to be consumed repeatedly, forever. A rotation of workers in a pool. A queue of API keys being cycled to spread out rate limits. A deck of flashcards in a spaced-repetition app. A playlist.
+
+All of these share the same problems:
+
+- **Recency avoidance**: an item that was just used shouldn't come up again too soon.
+- **Structural stability**: you can't just reshuffle from scratch every time, or you lose any guarantee about *how* soon an item can repeat.
+- **Long-term freshness**: if the same rotation order repeats forever, the system feels stale, even if no single repeat happens too quickly.
+
+A pure round-robin satisfies the second point perfectly but fails the third: the order is exactly the same, forever. A full reshuffle every cycle satisfies the third but breaks the first, since nothing stops the last item of one shuffle and the first item of the next from being identical. Neither extreme is enough on its own.
+
+## Where this came from
+
+I first ran into this problem while reverse-engineering how *GTA: San Andreas* handles its in-game radio stations, a small project where I rebuilt the game's station logic outside of the game itself. Rockstar split each station into short categorized clips instead of one long looping file, and the runtime had to pick what to play next in a way that felt alive rather than mechanical. That constraint is really just a specific instance of the general rotation problem above, so the algorithm that came out of it generalizes cleanly past music.
+
+## The mechanism
+
+The idea is to keep a queue, but relax the strict FIFO rule at the front of it. Instead of always consuming the head, you draw randomly from the first *k* entries, and whichever one you pick gets moved to the tail rather than discarded.
+
+```
+queue = [a, b, c, d, e, f]
+
+pick   = random_choice(queue[0:k])   # draw from the front window
+queue.remove(pick)
+queue.append(pick)                   # send it to the back of the line
+emit(pick)
+```
+
+Every draw slightly perturbs the sequence. The item you just emitted is guaranteed to sit at the very back, so it can't reappear until at least `n - k` other items have been emitted first, a hard guarantee, not a probabilistic one. But because the *choice* of which item to draw is randomized, the queue's internal order keeps drifting with every pick. Run it for a while and the ordering becomes unrecognizable from where it started, even though no single step ever violated the spacing guarantee.
+
+## Generalizing the window
+
+The simplest version of this draws from just the first two entries: flip a coin, and either play the current front of the queue or the one right behind it. That's an easy mental model, but the front window doesn't need to stop at two. You can draw from the first *k* entries for any *k* up to the size of the queue (n), and the two guarantees scale directly with that choice: a larger window means faster mixing and a sequence that decorrelates from its starting order more quickly, at the cost of a *smaller* minimum gap before repeats (`n - k` instead of `n - 2`). A smaller window does the opposite: it protects spacing more strongly but takes longer to escape the initial order. Tuning *k* is really tuning where you sit on that trade-off, and it's the same knob whether you're rotating songs, workers, or cache entries.
+
+## Why "entropy" is the right frame
+
+Call this entropy injection rather than shuffling. A full reshuffle jumps straight to a new random state, which is closer to resetting the system than evolving it. This mechanism instead nudges the existing order by one random perturbation per step, the way disorder incrementally creeps into any structured system. Locally, right after a few picks, the queue still looks a lot like where it started. But entropy is cumulative: the small perturbations compound, and given enough iterations the ordering has fully decorrelated from its initial state, without ever passing through a moment where the guarantee on minimum spacing was violated. A hard local guarantee alongside unbounded long-run drift is a combination a plain reshuffle-on-empty or a static round-robin can't offer at the same time.
+
+## Prior art, briefly
+
+I looked for existing names for this and didn't find an exact match, but a couple of related efforts are worth citing. A [University of Waterloo programming exercise](https://eceweb.uwaterloo.ca/~ece150/Programming_challenges/K.2/) tackles the same "songs shouldn't repeat too soon" problem and poses an unsolved follow-up challenge whose suggested approach is a sliding window sized at half the list. That's conceptually the same window-based idea, just left incomplete on the page. Separately, both the [Miller Shuffle algorithm](https://github.com/RondeSC/Miller_Shuffle_Algo) and Spotify's more recent ["Fewer Repeats" shuffle system](https://engineering.atspotify.com/2025/11/shuffle-making-random-feel-more-human) solve a similar freshness problem, but through index math and multi-sequence scoring respectively, rather than an online queue that mutates one step at a time. None of them quite land on this specific queue-based mechanism, which is part of why I think it's worth naming and writing up on its own.
+
+## Naming it
+
+I'm calling this the **k-Window Recirculating Queue**. It's a small idea, but it's a clean one: a FIFO queue with one relaxed rule at the front, tunable by a single parameter, that gets you provable spacing guarantees and organic long-run drift at the same time. You can see the original, narrower write-up (where this started as a "Randomized Dual-Head Queue" for a GTA radio project) [here](https://www.sanandreasradio.com/rdhq).
+
+## Closing thoughts
+
+The broader lesson here is a false choice that shows up all over system design: "deterministic and structured" versus "random and fresh," as if those are the only two dials available. Usually there's a narrow, bounded slice of randomness you can insert at exactly the right point in an otherwise rigid structure, and it buys you most of what full randomness offers without giving up the guarantees the structure was there for in the first place.
+
+I haven't pushed this idea past the basic case. Weighted items that should recur at different rates, multiple consumers draining the same queue concurrently, or an adaptive *k* that changes itself over time are all open. If any of that turns out to matter for a real use case you have, I'd be glad to hear about it.
