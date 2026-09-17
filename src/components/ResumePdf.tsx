@@ -15,7 +15,7 @@ Font.register({
 });
 
 const NAME = "Badri Isiani";
-const EMAIL = socials.filter(elem => elem.platform === "Email")[0]
+const EMAIL = socials.find(elem => elem.platform === "Email")!
 const PHONE = parsePhoneNumber("+13472928885");
 type EducationItem = {
     institution: string;
