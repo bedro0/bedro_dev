@@ -7,7 +7,7 @@ export type BlogTeaserCardProps = {
 };
 
 export default function BlogTeaserCard({ href, title, dateLabel, headline, skills }: BlogTeaserCardProps) {
-    return <a className="text-balance group flex flex-col gap-3 bg-accent rounded-2xl px-8 py-8 w-full sm:w-sm"
+    return <a className="text-balance group flex flex-col gap-3 bg-accent rounded-2xl p-8 w-full sm:w-sm"
         href={href}
     >
         <p className="text-sm uppercase tracking-wide text-muted-foreground">{dateLabel}</p>

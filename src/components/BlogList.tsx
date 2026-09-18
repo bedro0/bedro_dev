@@ -12,12 +12,10 @@ export default function BlogList({ posts }: { posts: Post[] }) {
 function DisplayPost({ post }: { post: Post }) {
     const { url, frontmatter: { title, description, updated_date } } = post
     return <a href={url}>
-        <div className="bg-accent p-8 rounded-2xl md:w-2xl text-balance">
-            <h1 className="text-2xl">{title}</h1>
-            <p>{updated_date}</p>
-            <div className="flex">
-                <p className="py-2 mt-4 rounded-lg text-muted-foreground">{description}</p>
-            </div>
+        <div className="bg-accent group p-8 rounded-2xl md:w-2xl text-balance group flex flex-col gap-4">
+            <p className="text-sm uppercase tracking-wide text-muted-foreground">{updated_date}</p>
+            <h4 className="text-2xl group-hover:text-sidebar-primary">{title}</h4>
+            <p className="text-muted-foreground">{description}</p>
         </div>
     </a>
 }
