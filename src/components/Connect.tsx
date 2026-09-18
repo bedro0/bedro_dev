@@ -27,6 +27,7 @@ export default function Connect() {
                         href={url}
                         className={`flex items-center gap-2 bg-accent rounded-full px-4 py-2 transition-colors ${hoverColor ? "hover:text-(--brand-hover-light) dark:hover:text-(--brand-hover-dark)" : "hover:text-sidebar-primary"}`}
                         style={brandHoverVars(hoverColor) as React.CSSProperties}
+                        target="_blank"
                     >
                         <Logo size={20} />
                         <span className="text-sm">{platform}</span>
