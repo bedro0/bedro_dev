@@ -1,12 +1,12 @@
 ---
-import Root from "@/layouts/Root.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import Prose from "./Prose.astro";
 import BackLink from "@/components/BackLink.astro";
 ---
 
-<Root>
+<BaseLayout>
     <Prose>
         <BackLink href="/blog" label="Back to blog" />
         <slot />
     </Prose>
-</Root>
+</BaseLayout>

@@ -1,5 +1,5 @@
 ---
-import Root from "@/layouts/Root.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import DisplayJobs from "@/components/DisplayJobs";
 import DisplayProjects from "@/components/DisplayProjects";
 import DisplayBlog from "@/components/DisplayBlog";
@@ -8,7 +8,7 @@ import Connect from "@/components/Connect";
 import Talk from "@/components/Talk";
 ---
 
-<Root>
+<BaseLayout>
 	<section id="about">
 		<Connect />
 	</section>
@@ -30,4 +30,4 @@ import Talk from "@/components/Talk";
 			<Talk />
 		</div>
 	</section>
-</Root>
+</BaseLayout>

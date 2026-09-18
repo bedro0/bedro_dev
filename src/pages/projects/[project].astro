@@ -1,6 +1,6 @@
 ---
 import Prose from "@/layouts/Prose.astro";
-import Root from "@/layouts/Root.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { projects } from "@/lib/experience";
 import BackLink from "@/components/BackLink.astro";
 export function getStaticPaths() {
@@ -13,7 +13,7 @@ const { project } = Astro.params;
 const projectEntry = projects[project];
 ---
 
-<Root>
+<BaseLayout>
     <Prose>
         <BackLink href="/projects" label="Back to projects" />
         <a class="no-underline w-fit" href={`/blog/${project}`}
@@ -27,4 +27,4 @@ const projectEntry = projects[project];
             {projectEntry.accomplishments.map((elem) => <li>{elem}</li>)}
         </ul>
     </Prose>
-</Root>
+</BaseLayout>
