@@ -3,7 +3,7 @@ import { socials } from "@/lib/socials";
 const { social } = Astro.params;
 const match = socials
     .filter(({ platform }) => platform !== "Resume")
-    .find(({ platform }) => platform.toLowerCase() === social);
+    .find(({ platform }) => platform.toLowerCase() === social?.toLowerCase());
 
 if (match) return Astro.redirect(match.url, 301);
 else return Astro.redirect("/404", 404);
